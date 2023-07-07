@@ -3,3 +3,25 @@
 # JailSystem by IDEEESS
 #
 #
+
+setup:
+  worldJailName: jail
+  permissions:
+    jailCommandPermission: jailsystem.jail
+    unjailCommandPermission: jailsystem.unjail
+    bypassJail: jailsystem.bypass
+  jailSpawnLocation:
+    x: Set here
+    y: Set here
+    z: Set here
+  jail:
+    x: Set here
+    y: Set here
+    z: Set here
+    x1: Set here
+    y2: Set here
+    z3: Set here
+  jailexit:
+    x: Set here
+    y: Set here
+    z: Set here
