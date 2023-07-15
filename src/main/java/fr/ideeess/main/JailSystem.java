@@ -1,11 +1,11 @@
 package fr.ideeess.main;
-
+import fr.ideeess.commands.SetCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-public class JailSystem extends JavaPlugin {
+public class JailSystem extends JavaPlugin{
 
     public static final String WORLDJAILNAME = new JailSystem().getConfig().getString("setup.worldJailName");
     public static final String JAILCOMMANDPERMISSION = new JailSystem().getConfig().getString("setup.permissions.jailCommandPermission");
@@ -28,6 +28,18 @@ public class JailSystem extends JavaPlugin {
     public static int JAILEXITSPAWNZ;
     public static boolean DEFINEJAILEXITSPAWN = false;
     public static Location JAILEXITLOCATION;
+    public static int BLOCK1X;
+    public static int BLOCK1Y;
+    public static int BLOCK1Z;
+    public static int BLOCK2X;
+    public static int BLOCK2Y;
+    public static int BLOCK2Z;
+    public static int BLOCK3X;
+    public static int BLOCK3Y;
+    public static int BLOCK3Z;
+    public static boolean DEFINEBLOCKBREAKPOINT1 = false;
+    public static boolean DEFINEBLOCKBREAKPOINT2 = false;
+    public static boolean DEFINEBLOCKBREAKPOINT3 = false;
 
     @Override
     public void onEnable() {
@@ -84,6 +96,31 @@ public class JailSystem extends JavaPlugin {
         if(!DEFINEJAILEXITSPAWN){
             JAILEXITLOCATION = new Location(Bukkit.getWorld(WORLDJAILNAME),JAILEXITSPAWNX , JAILEXITSPAWNY , JAILEXITSPAWNZ);
         }
+
+        if (!(getConfig().get("setup.block1.x") instanceof Integer && getConfig().get("setup.block1.y") instanceof Integer && getConfig().get("setup.block1.z") instanceof Integer && getConfig().get("setup.block2.x") instanceof Integer && getConfig().get("setup.block2.y") instanceof Integer && getConfig().get("setup.block2.z") instanceof Integer && getConfig().get("setup.block3.x") instanceof Integer && getConfig().get("setup.block3.y") instanceof Integer && getConfig().get("setup.block3.z") instanceof Integer)){
+            Bukkit.getLogger().severe("Merci de définir les points de spawn des blocs");
+            DEFINEBLOCKBREAKPOINT1 = true;
+            DEFINEBLOCKBREAKPOINT2 = true;
+            DEFINEBLOCKBREAKPOINT3 = true;
+        }else{
+            BLOCK1X = (int) getConfig().get("setup.block1.x");
+            BLOCK1Y = (int) getConfig().get("setup.block1.y");
+            BLOCK1Z = (int) getConfig().get("setup.block1.z");
+            BLOCK2X = (int) getConfig().get("setup.block2.x");
+            BLOCK2Y = (int) getConfig().get("setup.block2.y");
+            BLOCK2Z = (int) getConfig().get("setup.block2.z");
+            BLOCK3X = (int) getConfig().get("setup.block3.x");
+            BLOCK3Y = (int) getConfig().get("setup.block3.y");
+            BLOCK3Z = (int) getConfig().get("setup.block3.z");
+
+        }
+
+        //Commandes
+        getCommand("setjail").setExecutor(new SetCommand(this));
+
+        //Tabcomplete
+        getCommand("setjail").setTabCompleter(new SetCommand(this));
+
     }
 
     @Override

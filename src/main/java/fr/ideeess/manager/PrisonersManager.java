@@ -123,9 +123,12 @@ public class PrisonersManager extends JailSystem {
 
         player.sendMessage(ChatColor.GREEN + "Vous venez d'être libéré , merci de ne pas recommencer.");
 
-        getConfig().set("prisonners."+playerName+".punition",null);
-        getConfig().set("prisonners."+playerName+".inventory",null);
+        getConfig().set("prisonners."+playerName,null);
         saveConfig();
+    }
+
+    public boolean isPrisoner(String playerName){
+        return getConfig().isSet("prisoner"+playerName);
     }
 
 }

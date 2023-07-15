@@ -25,3 +25,16 @@ setup:
     x: Set here
     y: Set here
     z: Set here
+  block1:
+    x: Set here
+    y: Set here
+    z: Set here
+  block2:
+    x: Set here
+    y: Set here
+    z: Set here
+  block3:
+    x: Set here
+    y: Set here
+    z: Set here
+
